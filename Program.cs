@@ -7,6 +7,7 @@ namespace TikTacToeGame
         static void Main(string[] args)
         {
             char []board = startGame();
+            char option = chooseLetter();
 
         }
         public static char[] startGame()
@@ -17,6 +18,13 @@ namespace TikTacToeGame
                 board[i] = ' ';
             }
             return board;
+        }
+        public static char chooseLetter()
+        {
+            Console.WriteLine("Enter the text you want to use : X or 0");
+            char option = Convert.ToChar(Console.ReadLine());
+            return option;
+
         }
     }
 }
