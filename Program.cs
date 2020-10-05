@@ -9,6 +9,8 @@ namespace TikTacToeGame
             char []board = startGame();
             
             int userMove = getUserMove(board);
+            Console.WriteLine("The user is at" + userMove);
+           
         }
         public static int getUserMove(char[] board)
         {
@@ -18,10 +20,12 @@ namespace TikTacToeGame
             if (board[index] == '\0')
             
             {
+                Console.WriteLine("There is availability at" + index);
                 return index;
             }
             else
             {
+                Console.WriteLine("There is no availability at" + index);
                 return -1;
             }
         }
