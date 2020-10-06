@@ -4,27 +4,22 @@ namespace TikTacToeGame
 {
     public class TikTacToeGame
     {
-        public const int HEAD = 0;
-        public const int TAIL = 1;
-        public enum PLAYER { USER, COMPUTER};
         static void Main(string[] args)
         {
-            char[] board = startGame();
-            char userletter = chooseLetter();
-            Console.WriteLine("Won:" + isUserWinner(userletter, board));
-
            
-            //PLAYER player = whoStartsGame();
-            
-        }
-        public static char[] startGame()
-        {
-            char[] board = new char[10];
-            for (int i = 0; i < 10; i++)
+            char userletter = chooseLetter();
+            char computerletter;
+            if (userletter=='X')
             {
-                board[i] = ' ';
+                computerletter = '0';
             }
-            return board;
+            else
+            {
+                computerletter = 'X';
+            }
+            char[] board = new char[10];
+           
+            int computermove = computerMove(board, computerletter); 
         }
         public static char chooseLetter()
         {
@@ -33,7 +28,21 @@ namespace TikTacToeGame
             return option;
 
         }
-        public static bool isUserWinner(char user, char [] b )
+        public static int computerMove(char[] b, char c_letter)
+        {
+            Random random = new Random();
+            int index = random.Next(0, 9);
+            if(b[index]=='\0')
+            {
+                b[index] = c_letter;
+                if (isComputerWinner(c_letter, b)) 
+                {
+                    return index;
+                }
+            }
+            return 0;
+        }
+        public static bool isComputerWinner(char user, char [] b )
         {
             return ((b[1] == user && b[2] == user && b[3] == user) ||
                     (b[3] == user && b[4] == user && b[6] == user) ||
