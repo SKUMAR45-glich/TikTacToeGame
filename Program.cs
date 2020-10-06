@@ -4,40 +4,29 @@ namespace TikTacToeGame
 {
     public class TikTacToeGame
     {
+        public const int HEAD = 0;
+        public const int TAIL = 1;
+        public enum PLAYER { USER, COMPUTER};
         static void Main(string[] args)
         {
-            char []board = startGame();
-            
-            int userMove = getUserMove(board);
-            Console.WriteLine("The user is at" + userMove);
            
-        }
-        public static int getUserMove(char[] board)
-        {
-
-            Console.WriteLine("Enter your next move");
-            int index = Convert.ToInt32(Console.ReadLine());
-            if (board[index] == '\0')
+            PLAYER player = whoStartsGame();
             
+        }
+        public static PLAYER whoStartsGame()
+        {
+            Random random = new Random();
+            int index = random.Next(0, 2);
+            if(index == HEAD)
             {
-                Console.WriteLine("There is availability at" + index);
-                return index;
+                return PLAYER.USER;
             }
             else
             {
-                Console.WriteLine("There is no availability at" + index);
-                return -1;
+                return PLAYER.COMPUTER;
             }
         }
-
-        public static char[] startGame()
-        {
-            char[] board = new char[10];
-            for (int i = 0; i < 8; i++)
-            {
-                board[i] = ' ';
-            }
-            return board;
-        }
+        
+      
     }
 }
