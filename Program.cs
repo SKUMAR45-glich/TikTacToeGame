@@ -20,6 +20,19 @@ namespace TikTacToeGame
             char[] board = new char[10];
            
             int computermove = computerMove(board, computerletter); 
+            int usermove = userMove(board, userletter); 
+            if(computermove!=0)
+            {
+                Console.WriteLine("Computer is winner");
+            }
+            else if(usermove!=0)
+            {
+                Console.WriteLine("User is Winner");
+            }
+            else
+            {
+                Console.WriteLine("Tie");
+            }
         }
         public static char chooseLetter()
         {
@@ -35,14 +48,28 @@ namespace TikTacToeGame
             if(b[index]=='\0')
             {
                 b[index] = c_letter;
-                if (isComputerWinner(c_letter, b)) 
+                if (isWinner(c_letter, b)) 
                 {
                     return index;
                 }
             }
             return 0;
         }
-        public static bool isComputerWinner(char user, char [] b )
+        public static int userMove(char[] b, char u_letter)
+        {
+            Console.WriteLine("Enter the position to be filled");
+            int index = Convert.ToInt32(Console.ReadLine());
+            if (b[index] == '\0')
+            {
+                b[index] = u_letter;
+                if (isWinner(u_letter, b))
+                {
+                    return index;
+                }
+            }
+            return 0;
+        }
+        public static bool isWinner(char user, char [] b )
         {
             return ((b[1] == user && b[2] == user && b[3] == user) ||
                     (b[3] == user && b[4] == user && b[6] == user) ||
