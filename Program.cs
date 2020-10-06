@@ -75,6 +75,8 @@ namespace TikTacToeGame
                     }
                 }
             }
+            bool restart = playAgain();
+
         }
         
         
@@ -126,5 +128,15 @@ namespace TikTacToeGame
                     (b[3] == user && b[5] == user && b[7] == user));
         }
 
+        public static bool playAgain()
+        {
+            Console.WriteLine("Do you want to play again");
+            string option = Console.ReadLine();
+            if(option =="yes")
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
