@@ -8,6 +8,7 @@ namespace TikTacToeGame
         {
            
             char userletter = chooseLetter();
+            char[] board = new char[10];
             char computerletter;
             if (userletter=='X')
             {
@@ -17,7 +18,7 @@ namespace TikTacToeGame
             {
                 computerletter = 'X';
             }
-            char[] board = new char[10];
+            
            
             int computermove = computerMove(board, computerletter); 
             int usermove = userMove(board, userletter); 
@@ -31,8 +32,33 @@ namespace TikTacToeGame
             }
             else
             {
-                Console.WriteLine("Tie");
+                int[] corners = { 1, 3, 7, 9 };
+                int userchoice = userChoice(board, corners);
+                if(userchoice!=0)
+                {
+                    Console.WriteLine("Enter the value at" +userchoice);
+                }
+                else
+                {
+                    Console.WriteLine("Not Available");
+
+                }
             }
+        }
+        public static int userChoice(char[] b, int [] c)
+        {
+              int index = Convert.ToInt32(Console.ReadLine());
+              while(b[index]!='\0')
+              {
+                 for(int i=0; i<c.Length;i++)
+                 {
+                     if(c[i]==index)
+                     {
+                        return index;
+                     }
+                 }
+              }
+            return 0;
         }
         public static char chooseLetter()
         {
