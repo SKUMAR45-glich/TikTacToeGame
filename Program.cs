@@ -40,11 +40,43 @@ namespace TikTacToeGame
                 }
                 else
                 {
-                    Console.WriteLine("Not Available");
+                    if(board[5] == '\0')
+                    {
+                        Console.WriteLine("Enter the value at 5");
+                    }
+                    else
+                    {
+                        int[] side = { 2, 4, 6, 8 };
+                        int cornerchoice = cornerChoice(board, side);
+                        if(cornerchoice!=0)
+                        {
+                            Console.WriteLine("Enter the value at" + cornerchoice);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not Available");
+                        }
+                    }
 
                 }
             }
         }
+        public static int cornerChoice(char[] b, int[] side)
+        {
+            int index = Convert.ToInt32(Console.ReadLine());
+            while (b[index] != '\0')
+            {
+                for (int i = 0; i < side.Length; i++)
+                {
+                    if (side[i] == index)
+                    {
+                        return index;
+                    }
+                }
+            }
+            return 0;
+        }
+
         public static int userChoice(char[] b, int [] c)
         {
               int index = Convert.ToInt32(Console.ReadLine());
